@@ -57,7 +57,7 @@ export default async function Home() {
 			<h1><Link href="/reviews">REVIEWS</Link></h1>
 			<ul>
 				{reviews.data.map(review =>
-					<li><Link href={"/reviews/" + review.id}>{review.attributes.title} - {review.attributes.artist}</Link></li>
+					<li key={review.id}><Link href={"/reviews/" + review.id}>{review.attributes.title} - {review.attributes.artist}</Link></li>
 				)}
 				<li><Link href="/reviews" className={styles.italic}>read more...</Link></li>
 			</ul>

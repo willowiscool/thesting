@@ -30,7 +30,7 @@ export default function Shows({shows}) {
 			</div>
 			<div className={styles.table}>
 				{shows.data.filter(show => show.attributes.weekday === weekday).map(show =>
-					<div className={styles.row}>
+					<div className={styles.row} key={show.id}>
 						<div className={styles.cell}>
 							{timeFormat(show.attributes.start)} to {timeFormat(show.attributes.end)}
 						</div>
@@ -44,12 +44,5 @@ export default function Shows({shows}) {
 				)}
 			</div>
 		</div>
-	)
-	return (
-		<ul>
-			{shows.data.map(show => 
-				<li>{show.attributes.name} - {show.attributes.dj} on {show.attributes.weekday}s</li>
-			)}
-		</ul>
 	)
 }
