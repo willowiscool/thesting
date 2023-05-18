@@ -1,0 +1,32 @@
+.shows {
+	display: flex;
+	align-items: flex-start;
+}
+.shows button {
+	background: none;
+	color: white;
+	border: 1px solid white;
+	border-bottom: none;
+	width: 100%;
+	font-family: var(--font-bebasNeue);
+	font-size: 1.5em;
+	padding: 5px;
+}
+.shows button:last-child {
+	border-bottom: 1px solid white;
+}
+/* by using classes and display: table, we can take away display: table for a
+ * mobile site (TODO) while still having it act as a table on wider screens */
+.table {
+	display: table;
+	flex-grow: 1;
+	font-family: var(--font-benne);
+	font-size: 1.5em;
+}
+.row {
+	display: table-row;
+}
+.cell {
+	padding: 5px;
+	display: table-cell;
+}

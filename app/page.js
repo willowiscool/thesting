@@ -1,95 +1,66 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Link from "next/link"
+import qs from "qs"
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import styles from "./page.module.css"
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+import Shows from "./shows"
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+const reviewsQuery = qs.stringify({
+	fields: ["title", "artist"],
+	pagination: {
+		start: 0,
+		limit: 5
+	},
+	sort: "reviewDate:desc"
+})
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+const showsQuery = qs.stringify({
+	fields: ["start", "end", "weekday", "name", "dj"],
+	pagination: {
+		start: 0,
+		limit: 100
+	},
+	filters: {
+		onAir: {
+			$eq: true
+		}
+	},
+	sort: "start"
+})
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+export default async function Home() {
+	const reviews = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/reviews?${reviewsQuery}`)
+		.then(res => res.json())
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+	const shows = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/shows?${showsQuery}`)
+		.then(res => res.json())
+	return (
+		<main>
+			<h1>ABOUT THE STING</h1>
+			<p>Launched in the fall of 2009, The Sting is WRUR’s internet-only counterpart. Tune in for music selected by students, news about campus events and activities, live broadcasts of UofR sporting events, and much much more.</p>
+			<div className={styles.horizontal}>
+				<Link href="/about">Learn More</Link>
+				<a href="#">UR TV</a>
+				<a href="https://ccc.rochester.edu/wrur/club_signup">Join on CCC</a>
+			</div>
+			<h1>SCHEDULE</h1>
+			<Shows shows={shows}/>
+			<h1><Link href="#">POSTS</Link></h1>
+			<ul>
+				<li><Link href="#">The WRUR Newsletter – 2022 Fall Edition</Link></li>
+				<li><Link href="#">Must Read: The Early Fall 2022 Newsletter</Link></li>
+				<li><Link href="#">The WRUR Newsletter – 2022 Spring Edition</Link></li>
+				<li><Link href="#">Must Read: The WRUR Newsletter – 2021 Fall Edition</Link></li>
+				<li><Link href="#">Must Read: The WRUR Newsletter – 2021 Late Summer Edition</Link></li>
+				<li><Link href="#" className={styles.italic}>read more...</Link></li>
+			</ul>
+			<h1><Link href="/reviews">REVIEWS</Link></h1>
+			<ul>
+				{reviews.data.map(review =>
+					<li><Link href={"/reviews/" + review.id}>{review.attributes.title} - {review.attributes.artist}</Link></li>
+				)}
+				<li><Link href="/reviews" className={styles.italic}>read more...</Link></li>
+			</ul>
+		</main>
+	)
 }

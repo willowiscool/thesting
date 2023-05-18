@@ -1,0 +1,16 @@
+.body {
+	display: flex;
+	align-items: flex-start;
+}
+
+.left {
+	position: sticky;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.right {
+	padding-right: 20px;
+}
