@@ -25,10 +25,6 @@
 	 text - 2
 	 image - 1
 	 back - 0 */
-.front, .back {
-	max-height: 95vh;
-	max-width: 60vw;
-}
 .front {
 	z-index: 3;
 }

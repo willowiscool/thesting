@@ -16,7 +16,6 @@ function timeFormat(time) {
 
 export default function Shows({shows}) {
 	const [weekday, setWeekday] = useState("Monday")
-	console.log(shows.data.map(show => show.attributes.start))
 	return (
 		<div className={styles.shows}>
 			<div>
