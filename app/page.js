@@ -38,6 +38,7 @@ const postsQuery = qs.stringify({
 	sort: "createdAt:desc"
 })
 
+export const revalidate = 60 // revalidate chache every 60 seconds
 export default async function Home() {
 	const reviews = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/reviews?${reviewsQuery}`)
 		.then(res => res.json())

@@ -19,13 +19,13 @@ export default function Shows({shows}) {
 	return (
 		<div className={styles.shows}>
 			<div>
-				<button onClick={() => setWeekday("Monday")}>Monday</button><br/>
-				<button onClick={() => setWeekday("Tuesday")}>Tuesday</button><br/>
-				<button onClick={() => setWeekday("Wednesday")}>Wednesday</button><br/>
-				<button onClick={() => setWeekday("Thursday")}>Thursday</button><br/>
-				<button onClick={() => setWeekday("Friday")}>Friday</button><br/>
-				<button onClick={() => setWeekday("Saturday")}>Saturday</button><br/>
-				<button onClick={() => setWeekday("Sunday")}>Sunday</button>
+				<button onClick={() => setWeekday("Monday")} className={weekday == "Monday" && styles.selected}>MON</button><br/>
+				<button onClick={() => setWeekday("Tuesday")} className={weekday == "Tuesday" && styles.selected}>TUE</button><br/>
+				<button onClick={() => setWeekday("Wednesday")} className={weekday == "Wednesday" && styles.selected}>WED</button><br/>
+				<button onClick={() => setWeekday("Thursday")} className={weekday == "Thursday" && styles.selected}>THU</button><br/>
+				<button onClick={() => setWeekday("Friday")} className={weekday == "Friday" && styles.selected}>FRI</button><br/>
+				<button onClick={() => setWeekday("Saturday")} className={weekday == "Saturday" && styles.selected}>SAT</button><br/>
+				<button onClick={() => setWeekday("Sunday")} className={weekday == "Sunday" && styles.selected}>SUN</button>
 			</div>
 			<div className={styles.table}>
 				{shows.data.filter(show => show.attributes.weekday === weekday).map(show =>

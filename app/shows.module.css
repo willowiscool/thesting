@@ -12,6 +12,10 @@
 	font-size: 1.5em;
 	padding: 5px;
 }
+.shows button.selected {
+	background: white;
+	color: black;
+}
 .shows button:last-child {
 	border-bottom: 1px solid white;
 }
