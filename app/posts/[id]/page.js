@@ -2,6 +2,7 @@ import Link from "next/link"
 import { micromark } from "micromark"
 import util from "../../util.module.css"
 
+export const revalidate = 60
 export default async function Post({ params: { id } }) {
 	const post = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/posts/${id}`)
 		.then(res => res.json())

@@ -59,8 +59,9 @@ export default async function Home() {
 				<a href="#" className={util.link}>UR TV</a>
 				<a href="https://ccc.rochester.edu/wrur/club_signup" className={util.link}>Join on CCC</a>
 			</div>
-			<h1>SCHEDULE</h1>
+			<h1><Link href="/shows">SCHEDULE</Link></h1>
 			<Shows shows={shows}/>
+			<p><i><Link href="/shows">see all shows</Link></i></p>
 			<h1><Link href="/posts">POSTS</Link></h1>
 			<ul>
 				{posts.data.map(post => 

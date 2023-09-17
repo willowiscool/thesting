@@ -2,6 +2,7 @@ import Link from "next/link"
 import { micromark } from "micromark"
 import util from "../../util.module.css"
 
+export const revalidate = 60
 export default async function Review({ params: { id } }) {
 	const reviewData = await fetch(
 		`${process.env.NEXT_PUBLIC_STRAPI_API}/reviews/${id}?populate=reviewer`
