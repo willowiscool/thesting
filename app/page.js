@@ -56,7 +56,7 @@ export default async function Home() {
 			<p>Launched in the fall of 2009, The Sting is WRUR’s internet-only counterpart. Tune in for music selected by students, news about campus events and activities, live broadcasts of UofR sporting events, and much much more.</p>
 			<div className={util.horizontal}>
 				<Link href="/about" className={util.link}>Learn More</Link>
-				<a href="#" className={util.link}>UR TV</a>
+				<a href="https://www.youtube.com/user/URTVOnline" className={util.link}>UR TV</a>
 				<a href="https://ccc.rochester.edu/wrur/club_signup" className={util.link}>Join on CCC</a>
 			</div>
 			<h1><Link href="/shows">SCHEDULE</Link></h1>

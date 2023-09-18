@@ -1,9 +1,13 @@
 "use client";
 
+import useSWR from "swr"
+
 import styles from "./player.module.css"
 import { useRef, useState } from "react"
 
 import { MdPlayArrow, MdPause, MdVolumeUp } from "react-icons/md"
+
+import NowPlaying from "./nowPlaying"
 
 export default function Player() {
 	const audioRef = useRef(null)
@@ -22,7 +26,7 @@ export default function Player() {
 
 	return (
 		<div className={styles.player}>
-			<span className={styles.nowPlaying}>NOW PLAYING: NOTHING</span>
+			<span className={styles.nowPlaying}>NOW PLAYING: <NowPlaying/></span>
 			<div className={styles.playerLine}>
 				<button onClick={handlePlay} className={styles.button}>
 					{playing ? <MdPause/> : <MdPlayArrow/>}
