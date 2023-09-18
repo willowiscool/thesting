@@ -9,7 +9,7 @@ export default function Shows({shows}) {
 	const [weekday, setWeekday] = useState("Monday")
 	return (
 		<div className={styles.shows}>
-			<div>
+			<div className={styles.buttons}>
 				<button onClick={() => setWeekday("Monday")} className={weekday == "Monday" && styles.selected}>MON</button><br/>
 				<button onClick={() => setWeekday("Tuesday")} className={weekday == "Tuesday" && styles.selected}>TUE</button><br/>
 				<button onClick={() => setWeekday("Wednesday")} className={weekday == "Wednesday" && styles.selected}>WED</button><br/>

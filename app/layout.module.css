@@ -14,3 +14,16 @@
 .right {
 	padding-right: 40px;
 }
+
+@media (max-width: 1000px) {
+	.body {
+		display: block;
+	}
+	.left {
+		position: initial;
+	}
+	.right {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}

@@ -4,6 +4,21 @@
 	width: 40vw;
 	aspect-ratio: 2400 / 2139;
 }
+@media (max-width: 1000px) {
+	.CD {
+		width: 60vw;
+	}
+}
+@media (max-width: 600px) {
+	.CD {
+		width: 80vw;
+	}
+}
+@media (max-width: 400px) {
+	.CD {
+		width: 100vw;
+	}
+}
 .CD span {
 	background: black;
 	font-size: 3em;

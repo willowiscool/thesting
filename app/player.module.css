@@ -5,6 +5,16 @@
 	align-items: stretch;
 	width: 60%;
 }
+@media (max-width: 600px) {
+	.player {
+		width: 80%;
+	}
+}
+@media (max-width: 400px) {
+	.player {
+		width: 95%;
+	}
+}
 .nowPlaying {
 	border: 1px solid white;
 	border-bottom: none;
