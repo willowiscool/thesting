@@ -35,6 +35,6 @@ export default function NowPlaying() {
 		(...args) => fetch(...args).then(res => res.json())
 	)
 	if (isLoading) return (<span>THE STING</span>)
-	if (data.data.length > 0) return (<span>{data.data[0].attributes.name}</span>)
+	if (data?.data?.length > 0) return (<span>{data.data[0].attributes.name}</span>)
 	return (<span>THE STING</span>)
 }
