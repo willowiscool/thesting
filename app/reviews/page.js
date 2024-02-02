@@ -5,6 +5,7 @@ import Link from "next/link"
 import useSWR from "swr"
 import { useState } from "react"
 import util from "../util.module.css"
+import styles from "./page.module.css"
 
 export default function Reviews() {
 	const [page, setPage] = useState(1)
@@ -35,13 +36,26 @@ export default function Reviews() {
 		<main>
 			<h1>REVIEWS</h1>
 			<p><i><Link href="/">back home</Link></i></p>
+			<div className={styles.searchContainer}>
+				<input
+					type="text"
+					placeholder="keywords"
+					className={`${styles.search} ${util.text}`}
+					value={inputTxt}
+					onChange={e => setInputTxt(e.target.value)}/>
+				<button
+					className={`${styles.searchButton}`}
+					onClick={() => setSearch(inputTxt)}>
+					Search
+				</button>
+				{search !== "" && <button className={styles.searchButton} onClick={() => {setSearch(""); setInputTxt("")}}>Clear</button>}
+			</div>
+			<br/>
 			<div>
-				<input type="text" placeholder="Search" value={inputTxt} onChange={e => setInputTxt(e.target.value)}/>
-				<button onClick={() => setSearch(inputTxt)}>Search</button>
-				{search !== "" && <button onClick={() => setSearch("")}>Clear Search</button>}
+				<div className={styles.spacer}></div>
 				<label className={util.text}>
-					Sort by
-					<select defaultValue="reviewDate:desc" value={sort} onChange={e => setSort(e.target.value)}>
+					Sort by:&nbsp;
+					<select defaultValue="reviewDate:desc" value={sort} onChange={e => setSort(e.target.value)} className={styles.select}>
 						<option value="reviewDate:desc">Review date (newest first)</option>
 						<option value="reviewDate:asc">Review date (oldest first)</option>
 						<option value="released:desc">Release date (newest first)</option>
