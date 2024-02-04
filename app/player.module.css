@@ -61,14 +61,38 @@
 	-webkit-appearance: none;
 	appearance: none;
 }
-.range::-moz-range-track, .range::-webkit-slider-runnable-track {
+.range::-webkit-slider-runnable-track {
 	border: 1px solid white;
 	height: 0.5rem;
 	/* make it look like the circle is at the end when it is */
 	margin-right: 0.5rem;
 	margin-left: 0.5rem;
 }
-.range::-moz-range-thumb, .range::-webkit-slider-thumb {
+.range::-moz-range-track { /* for some reason, I can't use a comma and put these together? it's really weird to me idk */
+	border: 1px solid white;
+	height: 0.5rem;
+	margin-right: 0.5rem;
+	margin-left: 0.5rem;
+}
+/* TODO:
+ * On mozilla, the thumb can move through the whole input, so making the runnable
+ * track slightly shorter (as above) means that at the end of the volume slider,
+ * the circle can appear past it. The same is not true for webkit-based browsers,
+ * as shortening the track also shortens the area that the thumb can move in.
+ * So, a solution needs to be found for having the circle not be in the track */
+.range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	aspect-ratio: 1;
+	background: black;
+	border: 1px solid white;
+	height: 1rem;
+	width: 1rem;
+	border-radius: 50%;
+	/* webkit needs some extra */
+	margin-top: -5px;
+}
+.range::-moz-range-thumb {
 	-webkit-appearance: none;
 	appearance: none;
 	aspect-ratio: 1;
@@ -78,6 +102,3 @@
 	width: 1rem;
 	border-radius: 50%;
 }
-/*.range::-webkit-slider-thumb {
-	margin-top: -12px;
-}*/
