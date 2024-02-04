@@ -9,7 +9,6 @@ export default async function Show({ params: { id } }) {
 		`${process.env.NEXT_PUBLIC_STRAPI_API}/shows/${id}?populate[0]=header`
 	).then(res => res.json())
 	const show = showData.data.attributes
-	console.log(show.header)
 
 	return (
 		<main>

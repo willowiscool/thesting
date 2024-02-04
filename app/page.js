@@ -1,5 +1,6 @@
 import Link from "next/link"
 import qs from "qs"
+import { micromark } from "micromark"
 
 import styles from "./page.module.css"
 import util from "./util.module.css"
@@ -40,20 +41,26 @@ const postsQuery = qs.stringify({
 
 export const revalidate = 60 // revalidate chache every 60 seconds
 export default async function Home() {
-	const reviews = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/reviews?${reviewsQuery}`)
-		.then(res => res.json())
+	const about = await fetch(
+		`${process.env.NEXT_PUBLIC_STRAPI_API}/about?fields[0]=description`
+	).then(res => res.json())
+	const reviews = await fetch(
+		`${process.env.NEXT_PUBLIC_STRAPI_API}/reviews?${reviewsQuery}`
+	).then(res => res.json())
 
 	// Shows is a client component but we fetch the shows in this server component and pass them rather than fetching them from the client
 	// Could use SWR with the fallback but that's not necessary
-	const shows = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/shows?${showsQuery}`)
-		.then(res => res.json())
+	const shows = await fetch(
+		`${process.env.NEXT_PUBLIC_STRAPI_API}/shows?${showsQuery}`
+	).then(res => res.json())
 
-	const posts = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API}/posts?${postsQuery}`)
-		.then(res => res.json())
+	const posts = await fetch(
+		`${process.env.NEXT_PUBLIC_STRAPI_API}/posts?${postsQuery}`
+	).then(res => res.json())
 	return (
 		<main>
 			<h1>ABOUT THE STING</h1>
-			<p>Launched in the fall of 2009, The Sting is WRUR’s internet-only counterpart. Tune in for music selected by students, news about campus events and activities, live broadcasts of UofR sporting events, and much much more.</p>
+			<div dangerouslySetInnerHTML={{ __html: micromark(about.data.attributes.description || "") }} className={util.markdown}/>
 			<div className={util.horizontal}>
 				<Link href="/about" className={util.link}>Learn More</Link>
 				<a href="https://www.youtube.com/user/URTVOnline" className={util.link}>UR TV</a>
