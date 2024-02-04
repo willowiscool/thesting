@@ -78,6 +78,6 @@
 	width: 1rem;
 	border-radius: 50%;
 }
-.range::-webkit-slider-thumb {
+/*.range::-webkit-slider-thumb {
 	margin-top: -12px;
-}
+}*/

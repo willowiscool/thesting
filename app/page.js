@@ -63,7 +63,7 @@ export default async function Home() {
 			<div dangerouslySetInnerHTML={{ __html: micromark(about.data.attributes.description || "") }} className={util.markdown}/>
 			<div className={util.horizontal}>
 				<Link href="/about" className={util.link}>Learn More</Link>
-				<a href="https://www.youtube.com/user/URTVOnline" className={util.link}>UR TV</a>
+				<a href="https://www.youtube.com/user/URTVOnline" className={util.link}>URTV</a>
 				<a href="https://ccc.rochester.edu/wrur/club_signup" className={util.link}>Join on CCC</a>
 			</div>
 			<h1><Link href="/shows">SCHEDULE</Link></h1>

@@ -12,12 +12,15 @@
 	font-size: 1.5em;
 	padding: 5px;
 }
-.shows button.selected {
+.shows button.selected, .shows button:hover {
 	background: white;
 	color: black;
 }
 .shows button:last-child {
 	border-bottom: 1px solid white;
+}
+.shows button:hover {
+	cursor: pointer;
 }
 /* by using classes and display: table, we can take away display: table for a
  * mobile site while still having it act as a table on wider screens */
